@@ -106,7 +106,7 @@
                 VerticalAlignment="Top"
                 Content="Kraj" />
             <TextBox
-                x:Name="CountrySetNameCountry"
+                x:Name="CountrySetName"
                 Width="130"
                 Height="30"
                 HorizontalAlignment="Center"
@@ -180,7 +180,7 @@
                 VerticalAlignment="Top"
                 Content="Nazwa ulicy" />
             <TextBox
-                x:Name="PlaceSetName"
+                x:Name="PlaceSetStreet"
                 Width="130"
                 Height="30"
                 HorizontalAlignment="Center"
@@ -253,6 +253,7 @@
             Grid.Column="4"
             Width="80"
             Height="30"
+            Click="Delete_Click"
             Content="Usuń" />
 
 

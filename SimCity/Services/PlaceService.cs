@@ -10,6 +10,67 @@ namespace SimCity.Services
 {
     public class PlaceService
     {
+        public static void DeletePlace(int id)
+        {
+            var sessionFactory = SessionFactory.CreateSessionFactory();
+            using (var session = sessionFactory.OpenSession())
+            {
+                using (session.BeginTransaction())
+                {
+                    var PlaceCreate = session.CreateCriteria(typeof(Place))
+                      .List<Place>();
+
+                    foreach (var con in PlaceCreate)
+                    {
+                        if (con.Id == id)
+                            session.Delete(con);
+                    }
+                    session.Transaction.Commit();
+                }
+            }
+        }
+        
+        public static void SavePlace(string street, int placePopulation, int cityId,int buildingId, int id =0)
+        {
+            Place place;
+            
+            var sessionFactory = SessionFactory.CreateSessionFactory();
+
+
+            using (var session = sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    
+                        if (id != 0)
+                    {
+                        place = new Place
+                        {
+                            Id = cityId,
+                            Street = street,
+                            PlacePopulation = placePopulation,
+                            City = new City { Id = cityId },
+                            Building = new Building { Id = buildingId}
+                            
+                        };
+                    }
+                    else
+                    {
+                        place = new Place
+                        {
+                            Street = street,
+                            PlacePopulation = placePopulation,
+                            City = new City { Id = cityId },
+                            Building = new Building { Id = buildingId }
+                        };
+                    }
+                    session.SaveOrUpdate(place);
+                    transaction.Commit();
+
+                }
+            }
+        }
+       
         public static List<PlaceModel> GetPlace()
         {
 

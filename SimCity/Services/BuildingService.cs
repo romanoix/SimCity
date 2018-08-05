@@ -10,6 +10,42 @@ namespace SimCity.Services
 {
     public class BuildingService
     {
+        
+        public static void SaveBuilding(string type, bool hasWindows, bool isIndustrial, int id =0)
+        {
+            Building building;            
+            var sessionFactory = SessionFactory.CreateSessionFactory();
+
+            using (var session = sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    if (id != 0)
+                    {
+                        building = new Building
+                        {
+                            Id = id,
+                            Type= type,
+                            HasWindows = hasWindows,
+                            IsIndustrial = isIndustrial
+                        };
+
+                    }
+                    else
+                    {
+                        building = new Building
+                        { 
+                            Type = type,
+                            HasWindows = hasWindows,
+                            IsIndustrial = isIndustrial
+                        };
+                    }
+                    session.SaveOrUpdate(building);
+                    transaction.Commit();
+
+                }
+            }
+        }
         public static List<BuildingModel> GetBuilding()
         {
 

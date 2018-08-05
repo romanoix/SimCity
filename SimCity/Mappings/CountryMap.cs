@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimCity.Mappings
 {
-    class CountryMap : ClassMap<Country>
+    public class CountryMap : ClassMap<Country>
     {
         public CountryMap()
         {
@@ -18,7 +18,7 @@ namespace SimCity.Mappings
             Map(x => x.Name, "Name");
             Map(x => x.Continent, "Continent");
 
-            HasOne(x => x.President).PropertyRef(x => x.Country).Cascade.All();
+            HasOne(x => x.President).Cascade.All();
             HasMany(x => x.Cities).Inverse().Cascade.All();
         }
     }

@@ -14,11 +14,11 @@ namespace SimCity.Mappings
         {
             Table("President");
 
-            Id(x => x.Id, "Id").GeneratedBy.Assigned();
+            Id(x => x.Id, "Id").GeneratedBy.Foreign("Country");
             Map(x => x.Name, "Name");
             Map(x => x.Age, "Age");
 
-            References(x => x.Country, "Id").Unique();
+            HasOne(x => x.Country).Constrained();
         }
     }
 }

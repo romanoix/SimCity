@@ -8,7 +8,7 @@ namespace SimCity.Entities
 {
     public class City
     {
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get;set; }
         public virtual string Name { get; set; }
         public virtual int Population { get; set; }
         public virtual Country Country { get; set; }

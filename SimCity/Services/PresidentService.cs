@@ -10,6 +10,52 @@ namespace SimCity.Services
 {
     public class PresidentService
     {
+        public static void DeletePresident(int id)
+        {
+            var sessionFactory = SessionFactory.CreateSessionFactory();
+            using (var session = sessionFactory.OpenSession())
+            {
+                using (session.BeginTransaction())
+                {
+                    var PresidentCreate = session.CreateCriteria(typeof(President))
+                      .List<President>();
+
+                    foreach (var con in PresidentCreate)
+                    {
+                        if (con.Id == id)
+                            session.Delete(con);                        
+                    }
+                    session.Transaction.Commit();
+                }
+            }
+        }
+        public static void SavePresident(string name, int age, int id)
+        {
+            President president;
+
+            var sessionFactory = SessionFactory.CreateSessionFactory();
+
+            using (var session = sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+
+                    president = new President
+                    {
+                        Name = name,
+                        Age = age,
+                        Country= new Country() { Id=id}
+
+                    };
+
+
+                    session.SaveOrUpdate(president);
+                    transaction.Commit();
+
+                }
+            }
+        }
+
         public static List<PresidentModel> GetPresident()
         {
 
@@ -39,5 +85,8 @@ namespace SimCity.Services
                 }
             }
         }
+        
     }
+    
 }
+

@@ -101,6 +101,7 @@
     <Compile Include="Services\BuildingService.cs" />
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\CountryService.cs" />
+    <Compile Include="Services\DeleteService.cs" />
     <Compile Include="Services\PlaceService.cs" />
     <Compile Include="Services\PresidentService.cs" />
     <Compile Include="SessionFactory.cs" />
