@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 namespace SimCity
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainView.xaml
+    /// Logika interakcji dla klasy MainView.xaml 
     /// </summary>
     public partial class MainView : Window
     {
